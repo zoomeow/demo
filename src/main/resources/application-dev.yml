@@ -1,0 +1,8 @@
+server:
+  port: 8080
+spring:
+  datasource:
+    url: jdbc:mysql://192.168.15.144:3306/URVistor?useUnicode=true&characterEncoding=UTF-8&useSSL=false
+    username: usr_CS_admin
+    password: baiYezhuiXiong11094
+    driver-class-name: com.mysql.jdbc.Driver

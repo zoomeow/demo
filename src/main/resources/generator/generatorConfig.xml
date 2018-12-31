@@ -1,0 +1,51 @@
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+    <!--本地磁盘jar包位置,已经导入依赖了不需要-->
+    <!--<classPathEntry location="E:\soft\apache-maven-3.2.3\repository_demo\mysql\mysql-connector-java\5.1.30\mysql-connector-java-5.1.30.jar"/>-->
+    <context id="Mysql"  targetRuntime="MyBatis3" defaultModelType="flat">
+        <!--假设在Mysql数据库中有一个表名为user info，你没有看错，中间是一个空格，这种情况下如果写出select * from user info这样的语句，-->
+        <!--肯定是要报错的,select * from `user info`-->
+        <!--由于beginningDelimiter和endingDelimiter的默认值为双引号(")，在Mysql中不能这么写，所以还要将这两个默认值改为反单引号(`)-->
+        <property name="beginningDelimiter" value="`"/>
+        <property name="endingDelimiter" value="`"/>
+
+        <!--生成通用mapper接口-->
+        <!--<plugin type="tk.mybatis.mapper.generator.MapperPlugin">-->
+            <!--<property name="mappers" value="com.example.demo.Mapper"/>-->
+        <!--</plugin>-->
+
+        <!--suppressAllComments:**阻止**生成注释，默认为false-->
+        <!--suppressDate:**阻止**生成的注释包含时间戳，默认为false-->
+        <!--一般情况下由于MBG生成的注释信息没有任何价值，而且有时间戳的情况下每次生成的注释都不一样，-->
+        <!--使用**版本控制**的时候每次都会提交，因而一般情况下我们都会屏蔽注释信息，可以如下配置：-->
+        <commentGenerator>
+            <property name="suppressDate" value="true"/>
+            <!-- 是否去除自动生成的注释 true：是 ： false:否 -->
+            <property name="suppressAllComments" value="true"/>
+        </commentGenerator>
+        <!--数据库连接驱动类,URL，用户名、密码 -->
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://192.168.15.144:3306/URVistor"
+                        userId="usr_CS_admin"
+                        password="baiYezhuiXiong11094">
+        </jdbcConnection>
+
+        <!-- 生成(实体)模型的包名和位置-->
+        <javaModelGenerator targetPackage="com.example.demo.entity" targetProject="src/main/java">
+            <property name="enableSubPackages" value="true"/>
+            <property name="trimStrings" value="true"/>
+        </javaModelGenerator>
+        <!-- 生成XML映射文件的包名和位置-->
+        <sqlMapGenerator targetPackage="mapper" targetProject="src/main/resources">
+            <property name="enableSubPackages" value="true"/>
+        </sqlMapGenerator>
+        <!-- 生成DAO接口的包名和位置-->
+        <javaClientGenerator targetPackage="com.example.demo.dao" targetProject="src/main/java"
+                             type="XMLMAPPER"/>
+        <!-- 要生成的表 tableName是数据库中的表名或视图名 domainObjectName是实体类名-->
+        <table tableName="ur_vistor" domainObjectName="User" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+        </table>
+    </context>
+</generatorConfiguration>

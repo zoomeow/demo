@@ -1,0 +1,571 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.dao.UserMapper">
+  <resultMap id="BaseResultMap" type="com.example.demo.entity.User">
+    <id column="ID" jdbcType="INTEGER" property="id" />
+    <result column="VISTOR_NAME" jdbcType="VARCHAR" property="vistorName" />
+    <result column="PHONE_NUM" jdbcType="VARCHAR" property="phoneNum" />
+    <result column="SEAT_NUM" jdbcType="VARCHAR" property="seatNum" />
+    <result column="CREATE_DTM_LOC" jdbcType="VARCHAR" property="createDtmLoc" />
+    <result column="SIGN_DTM_LOC" jdbcType="VARCHAR" property="signDtmLoc" />
+    <result column="SEND_DTM_LOC" jdbcType="VARCHAR" property="sendDtmLoc" />
+    <result column="SEND_STATUS" jdbcType="VARCHAR" property="sendStatus" />
+    <result column="UR_ANNUAL_METTING" jdbcType="VARCHAR" property="urAnnualMetting" />
+    <result column="METTING_START_TIME" jdbcType="VARCHAR" property="mettingStartTime" />
+    <result column="METTING_END_TIME" jdbcType="VARCHAR" property="mettingEndTime" />
+    <result column="METTING_ADDRESS" jdbcType="VARCHAR" property="mettingAddress" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, VISTOR_NAME, PHONE_NUM, SEAT_NUM, CREATE_DTM_LOC, SIGN_DTM_LOC, SEND_DTM_LOC, 
+    SEND_STATUS, UR_ANNUAL_METTING, METTING_START_TIME, METTING_END_TIME, METTING_ADDRESS
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ur_vistor
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from ur_vistor
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.demo.entity.User">
+    insert into ur_vistor (ID, VISTOR_NAME, PHONE_NUM, 
+      SEAT_NUM, CREATE_DTM_LOC, SIGN_DTM_LOC, 
+      SEND_DTM_LOC, SEND_STATUS, UR_ANNUAL_METTING, 
+      METTING_START_TIME, METTING_END_TIME, METTING_ADDRESS
+      )
+    values (#{id,jdbcType=INTEGER}, #{vistorName,jdbcType=VARCHAR}, #{phoneNum,jdbcType=VARCHAR}, 
+      #{seatNum,jdbcType=VARCHAR}, #{createDtmLoc,jdbcType=VARCHAR}, #{signDtmLoc,jdbcType=VARCHAR}, 
+      #{sendDtmLoc,jdbcType=VARCHAR}, #{sendStatus,jdbcType=VARCHAR}, #{urAnnualMetting,jdbcType=VARCHAR}, 
+      #{mettingStartTime,jdbcType=VARCHAR}, #{mettingEndTime,jdbcType=VARCHAR}, #{mettingAddress,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.demo.entity.User">
+    insert into ur_vistor
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="vistorName != null">
+        VISTOR_NAME,
+      </if>
+      <if test="phoneNum != null">
+        PHONE_NUM,
+      </if>
+      <if test="seatNum != null">
+        SEAT_NUM,
+      </if>
+      <if test="createDtmLoc != null">
+        CREATE_DTM_LOC,
+      </if>
+      <if test="signDtmLoc != null">
+        SIGN_DTM_LOC,
+      </if>
+      <if test="sendDtmLoc != null">
+        SEND_DTM_LOC,
+      </if>
+      <if test="sendStatus != null">
+        SEND_STATUS,
+      </if>
+      <if test="urAnnualMetting != null">
+        UR_ANNUAL_METTING,
+      </if>
+      <if test="mettingStartTime != null">
+        METTING_START_TIME,
+      </if>
+      <if test="mettingEndTime != null">
+        METTING_END_TIME,
+      </if>
+      <if test="mettingAddress != null">
+        METTING_ADDRESS,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="vistorName != null">
+        #{vistorName,jdbcType=VARCHAR},
+      </if>
+      <if test="phoneNum != null">
+        #{phoneNum,jdbcType=VARCHAR},
+      </if>
+      <if test="seatNum != null">
+        #{seatNum,jdbcType=VARCHAR},
+      </if>
+      <if test="createDtmLoc != null">
+        #{createDtmLoc,jdbcType=VARCHAR},
+      </if>
+      <if test="signDtmLoc != null">
+        #{signDtmLoc,jdbcType=VARCHAR},
+      </if>
+      <if test="sendDtmLoc != null">
+        #{sendDtmLoc,jdbcType=VARCHAR},
+      </if>
+      <if test="sendStatus != null">
+        #{sendStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="urAnnualMetting != null">
+        #{urAnnualMetting,jdbcType=VARCHAR},
+      </if>
+      <if test="mettingStartTime != null">
+        #{mettingStartTime,jdbcType=VARCHAR},
+      </if>
+      <if test="mettingEndTime != null">
+        #{mettingEndTime,jdbcType=VARCHAR},
+      </if>
+      <if test="mettingAddress != null">
+        #{mettingAddress,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.demo.entity.User">
+    update ur_vistor
+    <set>
+      <if test="vistorName != null">
+        VISTOR_NAME = #{vistorName,jdbcType=VARCHAR},
+      </if>
+      <if test="phoneNum != null">
+        PHONE_NUM = #{phoneNum,jdbcType=VARCHAR},
+      </if>
+      <if test="seatNum != null">
+        SEAT_NUM = #{seatNum,jdbcType=VARCHAR},
+      </if>
+      <if test="createDtmLoc != null">
+        CREATE_DTM_LOC = #{createDtmLoc,jdbcType=VARCHAR},
+      </if>
+      <if test="signDtmLoc != null">
+        SIGN_DTM_LOC = #{signDtmLoc,jdbcType=VARCHAR},
+      </if>
+      <if test="sendDtmLoc != null">
+        SEND_DTM_LOC = #{sendDtmLoc,jdbcType=VARCHAR},
+      </if>
+      <if test="sendStatus != null">
+        SEND_STATUS = #{sendStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="urAnnualMetting != null">
+        UR_ANNUAL_METTING = #{urAnnualMetting,jdbcType=VARCHAR},
+      </if>
+      <if test="mettingStartTime != null">
+        METTING_START_TIME = #{mettingStartTime,jdbcType=VARCHAR},
+      </if>
+      <if test="mettingEndTime != null">
+        METTING_END_TIME = #{mettingEndTime,jdbcType=VARCHAR},
+      </if>
+      <if test="mettingAddress != null">
+        METTING_ADDRESS = #{mettingAddress,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.demo.entity.User">
+    update ur_vistor
+    set VISTOR_NAME = #{vistorName,jdbcType=VARCHAR},
+      PHONE_NUM = #{phoneNum,jdbcType=VARCHAR},
+      SEAT_NUM = #{seatNum,jdbcType=VARCHAR},
+      CREATE_DTM_LOC = #{createDtmLoc,jdbcType=VARCHAR},
+      SIGN_DTM_LOC = #{signDtmLoc,jdbcType=VARCHAR},
+      SEND_DTM_LOC = #{sendDtmLoc,jdbcType=VARCHAR},
+      SEND_STATUS = #{sendStatus,jdbcType=VARCHAR},
+      UR_ANNUAL_METTING = #{urAnnualMetting,jdbcType=VARCHAR},
+      METTING_START_TIME = #{mettingStartTime,jdbcType=VARCHAR},
+      METTING_END_TIME = #{mettingEndTime,jdbcType=VARCHAR},
+      METTING_ADDRESS = #{mettingAddress,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="com.example.demo.entity.User">
+    <id column="ID" jdbcType="INTEGER" property="id" />
+    <result column="VISTOR_NAME" jdbcType="VARCHAR" property="vistorName" />
+    <result column="PHONE_NUM" jdbcType="VARCHAR" property="phoneNum" />
+    <result column="SEAT_NUM" jdbcType="VARCHAR" property="seatNum" />
+    <result column="CREATE_DTM_LOC" jdbcType="VARCHAR" property="createDtmLoc" />
+    <result column="SIGN_DTM_LOC" jdbcType="VARCHAR" property="signDtmLoc" />
+    <result column="SEND_DTM_LOC" jdbcType="VARCHAR" property="sendDtmLoc" />
+    <result column="SEND_STATUS" jdbcType="VARCHAR" property="sendStatus" />
+    <result column="UR_ANNUAL_METTING" jdbcType="VARCHAR" property="urAnnualMetting" />
+    <result column="METTING_START_TIME" jdbcType="VARCHAR" property="mettingStartTime" />
+    <result column="METTING_END_TIME" jdbcType="VARCHAR" property="mettingEndTime" />
+    <result column="METTING_ADDRESS" jdbcType="VARCHAR" property="mettingAddress" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, VISTOR_NAME, PHONE_NUM, SEAT_NUM, CREATE_DTM_LOC, SIGN_DTM_LOC, SEND_DTM_LOC, 
+    SEND_STATUS, UR_ANNUAL_METTING, METTING_START_TIME, METTING_END_TIME, METTING_ADDRESS
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ur_vistor
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from ur_vistor
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.demo.entity.User">
+    insert into ur_vistor (ID, VISTOR_NAME, PHONE_NUM, 
+      SEAT_NUM, CREATE_DTM_LOC, SIGN_DTM_LOC, 
+      SEND_DTM_LOC, SEND_STATUS, UR_ANNUAL_METTING, 
+      METTING_START_TIME, METTING_END_TIME, METTING_ADDRESS
+      )
+    values (#{id,jdbcType=INTEGER}, #{vistorName,jdbcType=VARCHAR}, #{phoneNum,jdbcType=VARCHAR}, 
+      #{seatNum,jdbcType=VARCHAR}, #{createDtmLoc,jdbcType=VARCHAR}, #{signDtmLoc,jdbcType=VARCHAR}, 
+      #{sendDtmLoc,jdbcType=VARCHAR}, #{sendStatus,jdbcType=VARCHAR}, #{urAnnualMetting,jdbcType=VARCHAR}, 
+      #{mettingStartTime,jdbcType=VARCHAR}, #{mettingEndTime,jdbcType=VARCHAR}, #{mettingAddress,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.demo.entity.User">
+    insert into ur_vistor
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="vistorName != null">
+        VISTOR_NAME,
+      </if>
+      <if test="phoneNum != null">
+        PHONE_NUM,
+      </if>
+      <if test="seatNum != null">
+        SEAT_NUM,
+      </if>
+      <if test="createDtmLoc != null">
+        CREATE_DTM_LOC,
+      </if>
+      <if test="signDtmLoc != null">
+        SIGN_DTM_LOC,
+      </if>
+      <if test="sendDtmLoc != null">
+        SEND_DTM_LOC,
+      </if>
+      <if test="sendStatus != null">
+        SEND_STATUS,
+      </if>
+      <if test="urAnnualMetting != null">
+        UR_ANNUAL_METTING,
+      </if>
+      <if test="mettingStartTime != null">
+        METTING_START_TIME,
+      </if>
+      <if test="mettingEndTime != null">
+        METTING_END_TIME,
+      </if>
+      <if test="mettingAddress != null">
+        METTING_ADDRESS,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="vistorName != null">
+        #{vistorName,jdbcType=VARCHAR},
+      </if>
+      <if test="phoneNum != null">
+        #{phoneNum,jdbcType=VARCHAR},
+      </if>
+      <if test="seatNum != null">
+        #{seatNum,jdbcType=VARCHAR},
+      </if>
+      <if test="createDtmLoc != null">
+        #{createDtmLoc,jdbcType=VARCHAR},
+      </if>
+      <if test="signDtmLoc != null">
+        #{signDtmLoc,jdbcType=VARCHAR},
+      </if>
+      <if test="sendDtmLoc != null">
+        #{sendDtmLoc,jdbcType=VARCHAR},
+      </if>
+      <if test="sendStatus != null">
+        #{sendStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="urAnnualMetting != null">
+        #{urAnnualMetting,jdbcType=VARCHAR},
+      </if>
+      <if test="mettingStartTime != null">
+        #{mettingStartTime,jdbcType=VARCHAR},
+      </if>
+      <if test="mettingEndTime != null">
+        #{mettingEndTime,jdbcType=VARCHAR},
+      </if>
+      <if test="mettingAddress != null">
+        #{mettingAddress,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.demo.entity.User">
+    update ur_vistor
+    <set>
+      <if test="vistorName != null">
+        VISTOR_NAME = #{vistorName,jdbcType=VARCHAR},
+      </if>
+      <if test="phoneNum != null">
+        PHONE_NUM = #{phoneNum,jdbcType=VARCHAR},
+      </if>
+      <if test="seatNum != null">
+        SEAT_NUM = #{seatNum,jdbcType=VARCHAR},
+      </if>
+      <if test="createDtmLoc != null">
+        CREATE_DTM_LOC = #{createDtmLoc,jdbcType=VARCHAR},
+      </if>
+      <if test="signDtmLoc != null">
+        SIGN_DTM_LOC = #{signDtmLoc,jdbcType=VARCHAR},
+      </if>
+      <if test="sendDtmLoc != null">
+        SEND_DTM_LOC = #{sendDtmLoc,jdbcType=VARCHAR},
+      </if>
+      <if test="sendStatus != null">
+        SEND_STATUS = #{sendStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="urAnnualMetting != null">
+        UR_ANNUAL_METTING = #{urAnnualMetting,jdbcType=VARCHAR},
+      </if>
+      <if test="mettingStartTime != null">
+        METTING_START_TIME = #{mettingStartTime,jdbcType=VARCHAR},
+      </if>
+      <if test="mettingEndTime != null">
+        METTING_END_TIME = #{mettingEndTime,jdbcType=VARCHAR},
+      </if>
+      <if test="mettingAddress != null">
+        METTING_ADDRESS = #{mettingAddress,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.demo.entity.User">
+    update ur_vistor
+    set VISTOR_NAME = #{vistorName,jdbcType=VARCHAR},
+      PHONE_NUM = #{phoneNum,jdbcType=VARCHAR},
+      SEAT_NUM = #{seatNum,jdbcType=VARCHAR},
+      CREATE_DTM_LOC = #{createDtmLoc,jdbcType=VARCHAR},
+      SIGN_DTM_LOC = #{signDtmLoc,jdbcType=VARCHAR},
+      SEND_DTM_LOC = #{sendDtmLoc,jdbcType=VARCHAR},
+      SEND_STATUS = #{sendStatus,jdbcType=VARCHAR},
+      UR_ANNUAL_METTING = #{urAnnualMetting,jdbcType=VARCHAR},
+      METTING_START_TIME = #{mettingStartTime,jdbcType=VARCHAR},
+      METTING_END_TIME = #{mettingEndTime,jdbcType=VARCHAR},
+      METTING_ADDRESS = #{mettingAddress,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="com.example.demo.entity.User">
+    <id column="ID" jdbcType="INTEGER" property="id" />
+    <result column="VISTOR_NAME" jdbcType="VARCHAR" property="vistorName" />
+    <result column="PHONE_NUM" jdbcType="VARCHAR" property="phoneNum" />
+    <result column="SEAT_NUM" jdbcType="VARCHAR" property="seatNum" />
+    <result column="CREATE_DTM_LOC" jdbcType="VARCHAR" property="createDtmLoc" />
+    <result column="SIGN_DTM_LOC" jdbcType="VARCHAR" property="signDtmLoc" />
+    <result column="SEND_DTM_LOC" jdbcType="VARCHAR" property="sendDtmLoc" />
+    <result column="SEND_STATUS" jdbcType="VARCHAR" property="sendStatus" />
+    <result column="UR_ANNUAL_METTING" jdbcType="VARCHAR" property="urAnnualMetting" />
+    <result column="METTING_START_TIME" jdbcType="VARCHAR" property="mettingStartTime" />
+    <result column="METTING_END_TIME" jdbcType="VARCHAR" property="mettingEndTime" />
+    <result column="METTING_ADDRESS" jdbcType="VARCHAR" property="mettingAddress" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, VISTOR_NAME, PHONE_NUM, SEAT_NUM, CREATE_DTM_LOC, SIGN_DTM_LOC, SEND_DTM_LOC, 
+    SEND_STATUS, UR_ANNUAL_METTING, METTING_START_TIME, METTING_END_TIME, METTING_ADDRESS
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ur_vistor
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from ur_vistor
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.demo.entity.User">
+    insert into ur_vistor (ID, VISTOR_NAME, PHONE_NUM, 
+      SEAT_NUM, CREATE_DTM_LOC, SIGN_DTM_LOC, 
+      SEND_DTM_LOC, SEND_STATUS, UR_ANNUAL_METTING, 
+      METTING_START_TIME, METTING_END_TIME, METTING_ADDRESS
+      )
+    values (#{id,jdbcType=INTEGER}, #{vistorName,jdbcType=VARCHAR}, #{phoneNum,jdbcType=VARCHAR}, 
+      #{seatNum,jdbcType=VARCHAR}, #{createDtmLoc,jdbcType=VARCHAR}, #{signDtmLoc,jdbcType=VARCHAR}, 
+      #{sendDtmLoc,jdbcType=VARCHAR}, #{sendStatus,jdbcType=VARCHAR}, #{urAnnualMetting,jdbcType=VARCHAR}, 
+      #{mettingStartTime,jdbcType=VARCHAR}, #{mettingEndTime,jdbcType=VARCHAR}, #{mettingAddress,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.demo.entity.User">
+    insert into ur_vistor
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="vistorName != null">
+        VISTOR_NAME,
+      </if>
+      <if test="phoneNum != null">
+        PHONE_NUM,
+      </if>
+      <if test="seatNum != null">
+        SEAT_NUM,
+      </if>
+      <if test="createDtmLoc != null">
+        CREATE_DTM_LOC,
+      </if>
+      <if test="signDtmLoc != null">
+        SIGN_DTM_LOC,
+      </if>
+      <if test="sendDtmLoc != null">
+        SEND_DTM_LOC,
+      </if>
+      <if test="sendStatus != null">
+        SEND_STATUS,
+      </if>
+      <if test="urAnnualMetting != null">
+        UR_ANNUAL_METTING,
+      </if>
+      <if test="mettingStartTime != null">
+        METTING_START_TIME,
+      </if>
+      <if test="mettingEndTime != null">
+        METTING_END_TIME,
+      </if>
+      <if test="mettingAddress != null">
+        METTING_ADDRESS,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="vistorName != null">
+        #{vistorName,jdbcType=VARCHAR},
+      </if>
+      <if test="phoneNum != null">
+        #{phoneNum,jdbcType=VARCHAR},
+      </if>
+      <if test="seatNum != null">
+        #{seatNum,jdbcType=VARCHAR},
+      </if>
+      <if test="createDtmLoc != null">
+        #{createDtmLoc,jdbcType=VARCHAR},
+      </if>
+      <if test="signDtmLoc != null">
+        #{signDtmLoc,jdbcType=VARCHAR},
+      </if>
+      <if test="sendDtmLoc != null">
+        #{sendDtmLoc,jdbcType=VARCHAR},
+      </if>
+      <if test="sendStatus != null">
+        #{sendStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="urAnnualMetting != null">
+        #{urAnnualMetting,jdbcType=VARCHAR},
+      </if>
+      <if test="mettingStartTime != null">
+        #{mettingStartTime,jdbcType=VARCHAR},
+      </if>
+      <if test="mettingEndTime != null">
+        #{mettingEndTime,jdbcType=VARCHAR},
+      </if>
+      <if test="mettingAddress != null">
+        #{mettingAddress,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.demo.entity.User">
+    update ur_vistor
+    <set>
+      <if test="vistorName != null">
+        VISTOR_NAME = #{vistorName,jdbcType=VARCHAR},
+      </if>
+      <if test="phoneNum != null">
+        PHONE_NUM = #{phoneNum,jdbcType=VARCHAR},
+      </if>
+      <if test="seatNum != null">
+        SEAT_NUM = #{seatNum,jdbcType=VARCHAR},
+      </if>
+      <if test="createDtmLoc != null">
+        CREATE_DTM_LOC = #{createDtmLoc,jdbcType=VARCHAR},
+      </if>
+      <if test="signDtmLoc != null">
+        SIGN_DTM_LOC = #{signDtmLoc,jdbcType=VARCHAR},
+      </if>
+      <if test="sendDtmLoc != null">
+        SEND_DTM_LOC = #{sendDtmLoc,jdbcType=VARCHAR},
+      </if>
+      <if test="sendStatus != null">
+        SEND_STATUS = #{sendStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="urAnnualMetting != null">
+        UR_ANNUAL_METTING = #{urAnnualMetting,jdbcType=VARCHAR},
+      </if>
+      <if test="mettingStartTime != null">
+        METTING_START_TIME = #{mettingStartTime,jdbcType=VARCHAR},
+      </if>
+      <if test="mettingEndTime != null">
+        METTING_END_TIME = #{mettingEndTime,jdbcType=VARCHAR},
+      </if>
+      <if test="mettingAddress != null">
+        METTING_ADDRESS = #{mettingAddress,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.demo.entity.User">
+    update ur_vistor
+    set VISTOR_NAME = #{vistorName,jdbcType=VARCHAR},
+      PHONE_NUM = #{phoneNum,jdbcType=VARCHAR},
+      SEAT_NUM = #{seatNum,jdbcType=VARCHAR},
+      CREATE_DTM_LOC = #{createDtmLoc,jdbcType=VARCHAR},
+      SIGN_DTM_LOC = #{signDtmLoc,jdbcType=VARCHAR},
+      SEND_DTM_LOC = #{sendDtmLoc,jdbcType=VARCHAR},
+      SEND_STATUS = #{sendStatus,jdbcType=VARCHAR},
+      UR_ANNUAL_METTING = #{urAnnualMetting,jdbcType=VARCHAR},
+      METTING_START_TIME = #{mettingStartTime,jdbcType=VARCHAR},
+      METTING_END_TIME = #{mettingEndTime,jdbcType=VARCHAR},
+      METTING_ADDRESS = #{mettingAddress,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="com.example.demo.entity.User">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="ID" jdbcType="INTEGER" property="id" />
+    <result column="VISTOR_NAME" jdbcType="VARCHAR" property="vistorName" />
+    <result column="PHONE_NUM" jdbcType="VARCHAR" property="phoneNum" />
+    <result column="SEAT_NUM" jdbcType="VARCHAR" property="seatNum" />
+    <result column="CREATE_DTM_LOC" jdbcType="VARCHAR" property="createDtmLoc" />
+    <result column="SIGN_DTM_LOC" jdbcType="VARCHAR" property="signDtmLoc" />
+    <result column="SEND_DTM_LOC" jdbcType="VARCHAR" property="sendDtmLoc" />
+    <result column="SEND_STATUS" jdbcType="VARCHAR" property="sendStatus" />
+    <result column="UR_ANNUAL_METTING" jdbcType="VARCHAR" property="urAnnualMetting" />
+    <result column="METTING_START_TIME" jdbcType="VARCHAR" property="mettingStartTime" />
+    <result column="METTING_END_TIME" jdbcType="VARCHAR" property="mettingEndTime" />
+    <result column="METTING_ADDRESS" jdbcType="VARCHAR" property="mettingAddress" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    ID, VISTOR_NAME, PHONE_NUM, SEAT_NUM, CREATE_DTM_LOC, SIGN_DTM_LOC, SEND_DTM_LOC, 
+    SEND_STATUS, UR_ANNUAL_METTING, METTING_START_TIME, METTING_END_TIME, METTING_ADDRESS
+  </sql>
+  <resultMap id="BaseResultMap" type="com.example.demo.entity.User">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="ID" jdbcType="INTEGER" property="id" />
+    <result column="VISTOR_NAME" jdbcType="VARCHAR" property="vistorName" />
+    <result column="PHONE_NUM" jdbcType="VARCHAR" property="phoneNum" />
+    <result column="SEAT_NUM" jdbcType="VARCHAR" property="seatNum" />
+    <result column="CREATE_DTM_LOC" jdbcType="VARCHAR" property="createDtmLoc" />
+    <result column="SIGN_DTM_LOC" jdbcType="VARCHAR" property="signDtmLoc" />
+    <result column="SEND_DTM_LOC" jdbcType="VARCHAR" property="sendDtmLoc" />
+    <result column="SEND_STATUS" jdbcType="VARCHAR" property="sendStatus" />
+    <result column="UR_ANNUAL_METTING" jdbcType="VARCHAR" property="urAnnualMetting" />
+    <result column="METTING_START_TIME" jdbcType="VARCHAR" property="mettingStartTime" />
+    <result column="METTING_END_TIME" jdbcType="VARCHAR" property="mettingEndTime" />
+    <result column="METTING_ADDRESS" jdbcType="VARCHAR" property="mettingAddress" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    ID, VISTOR_NAME, PHONE_NUM, SEAT_NUM, CREATE_DTM_LOC, SIGN_DTM_LOC, SEND_DTM_LOC, 
+    SEND_STATUS, UR_ANNUAL_METTING, METTING_START_TIME, METTING_END_TIME, METTING_ADDRESS
+  </sql>
+</mapper>

@@ -1,0 +1,12 @@
+spring:
+  profiles:
+    active:
+      - dev
+  thymeleaf:
+    cache: false
+    prefix: classpath:/templates/
+
+  mybatis:
+    mapper-locations: classpath:mapper/*.mapper
+    type-aliases-package: com.example.demo.entity
+
